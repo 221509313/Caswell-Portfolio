@@ -177,7 +177,7 @@
 
                 for (const file of files) {
                     if (file && file.type === 'video/mp4') {
-                        if (file.size > 50 * 1024 * 1024) { // 50MB in bytes
+                        if (file.size > 100 * 1024 * 1024) { // 50MB in bytes
                             alert(`File "${file.name}" exceeds the maximum size of 50MB.`);
                             continue;
                         }
