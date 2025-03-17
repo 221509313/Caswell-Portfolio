@@ -121,15 +121,43 @@
         </div>
     </section>
 
-    <!-- Self-Interview Video Section -->
-    <section id="video" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Self-Interview Video</h2>
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-            </div>
+   <!-- Self-Interview Video Section -->
+<section id="video" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Self-Interview Video</h2>
+        
+        <!-- Video Upload Form -->
+        <div class="mb-4">
+            <label for="video-upload" class="form-label">Upload your self-interview video (MP4 format):</label>
+            <input type="file" id="video-upload" class="form-control" accept="video/mp4">
+            <small class="text-muted">Max file size: 50MB</small>
         </div>
-    </section>
+
+        <!-- Video Player -->
+        <div class="embed-responsive embed-responsive-16by9">
+            <video id="video-player" class="embed-responsive-item" controls style="display: none;">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- JavaScript to Handle Video Upload -->
+        <script>
+            const videoUpload = document.getElementById('video-upload');
+            const videoPlayer = document.getElementById('video-player');
+
+            videoUpload.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file && file.type === 'video/mp4') {
+                    const videoURL = URL.createObjectURL(file);
+                    videoPlayer.src = videoURL;
+                    videoPlayer.style.display = 'block';
+                } else {
+                    alert('Please upload a valid MP4 video file.');
+                }
+            });
+        </script>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="bg-dark text-light py-5">
