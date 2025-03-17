@@ -10,6 +10,28 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+
+<style>
+    /* Style for the video container */
+    #video-container {
+        margin-top: 20px;
+    }
+
+    /* Style for each uploaded video */
+    .uploaded-video {
+        width: 100%; /* Make the video responsive */
+        max-width: 300px; /* Limit the maximum width */
+        height: auto; /* Maintain aspect ratio */
+        border: 2px solid #ddd; /* Add a border */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    }
+
+    /* Style for the video upload form */
+    #video-upload {
+        margin-bottom: 20px;
+    }
+</style>
 </head>
 <body>
     <!-- Header Section -->
@@ -121,38 +143,68 @@
         </div>
     </section>
 
-   <!-- Self-Interview Video Section -->
+ <!-- Self-Interview Video Section -->
 <section id="video" class="py-5">
     <div class="container">
         <h2 class="text-center mb-4">Self-Interview Video</h2>
         
         <!-- Video Upload Form -->
         <div class="mb-4">
-            <label for="video-upload" class="form-label">Upload your self-interview video (MP4 format):</label>
-            <input type="file" id="video-upload" class="form-control" accept="video/mp4">
-            <small class="text-muted">Max file size: 50MB</small>
+            <label for="video-upload" class="form-label">Upload your self-interview video (MP4 format, max 50MB):</label>
+            <input type="file" id="video-upload" class="form-control" accept="video/mp4" multiple>
+            <small class="text-muted">Maximum 3 videos allowed.</small>
         </div>
 
-        <!-- Video Player -->
-        <div class="embed-responsive embed-responsive-16by9">
-            <video id="video-player" class="embed-responsive-item" controls style="display: none;">
-                Your browser does not support the video tag.
-            </video>
+        <!-- Video Player Container -->
+        <div id="video-container" class="row">
+            <!-- Videos will be dynamically added here -->
         </div>
 
         <!-- JavaScript to Handle Video Upload -->
         <script>
             const videoUpload = document.getElementById('video-upload');
-            const videoPlayer = document.getElementById('video-player');
+            const videoContainer = document.getElementById('video-container');
+            let uploadedVideos = 0;
 
             videoUpload.addEventListener('change', function (event) {
-                const file = event.target.files[0];
-                if (file && file.type === 'video/mp4') {
-                    const videoURL = URL.createObjectURL(file);
-                    videoPlayer.src = videoURL;
-                    videoPlayer.style.display = 'block';
-                } else {
-                    alert('Please upload a valid MP4 video file.');
+                const files = event.target.files;
+
+                // Check if the number of uploaded videos exceeds the limit
+                if (uploadedVideos + files.length > 3) {
+                    alert('You can only upload a maximum of 3 videos.');
+                    return;
+                }
+
+                for (const file of files) {
+                    if (file && file.type === 'video/mp4') {
+                        if (file.size > 50 * 1024 * 1024) { // 50MB in bytes
+                            alert(`File "${file.name}" exceeds the maximum size of 50MB.`);
+                            continue;
+                        }
+
+                        // Create a video element
+                        const videoURL = URL.createObjectURL(file);
+                        const videoElement = document.createElement('video');
+                        videoElement.src = videoURL;
+                        videoElement.controls = true;
+                        videoElement.classList.add('uploaded-video');
+
+                        // Create a container for the video
+                        const videoWrapper = document.createElement('div');
+                        videoWrapper.classList.add('col-md-4', 'mb-4');
+                        videoWrapper.appendChild(videoElement);
+
+                        // Append the video to the container
+                        videoContainer.appendChild(videoWrapper);
+                        uploadedVideos++;
+
+                        // Stop if the maximum number of videos is reached
+                        if (uploadedVideos >= 3) {
+                            break;
+                        }
+                    } else {
+                        alert(`File "${file.name}" is not a valid MP4 video.`);
+                    }
                 }
             });
         </script>
