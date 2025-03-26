@@ -103,8 +103,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <!-- Projects Section -->
+   <!-- Projects Section -->
 <section id="projects" class="bg-light py-5">
     <div class="container">
         <h2 class="text-center mb-4">My Projects</h2>
@@ -112,6 +111,7 @@
             <!-- TaskTrack Project -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
+                    <img src="tracker.jpg" class="card-img-top" alt="TaskTrack Dashboard" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h3 class="card-title">TaskTrack - Productivity Dashboard</h3>
                         <p class="card-text">
@@ -130,7 +130,12 @@
                             <li>Clean, modern UI with CSS Grid</li>
                             <li>Dynamic progress tracking</li>
                         </ul>
-                        <p><strong>Tools & Technologies:</strong> HTML5, CSS3, JavaScript, localStorage API</p>
+                        <div class="tech-badges mb-3">
+                            <span class="badge bg-html">HTML5</span>
+                            <span class="badge bg-css">CSS3</span>
+                            <span class="badge bg-js">JavaScript</span>
+                            <span class="badge bg-api">localStorage API</span>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <a href="https://221509313.github.io/TaskTrack/" class="btn btn-primary">Live Demo</a>
                             <a href="https://github.com/221509313/TaskTrack" class="btn btn-outline-secondary">View Code</a>
@@ -145,6 +150,7 @@
             <!-- EcoBite Project -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
+                    <img src="eco-image.jpg" class="card-img-top" alt="EcoBite Website" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h3 class="card-title">EcoBite - Sustainable Recipes</h3>
                         <p class="card-text">
@@ -164,7 +170,13 @@
                             <li>Interactive elements with hover effects</li>
                             <li>Form validation with JavaScript</li>
                         </ul>
-                        <p><strong>Tools & Technologies:</strong> HTML5, CSS3, JavaScript, CSS Grid, Flexbox</p>
+                        <div class="tech-badges mb-3">
+                            <span class="badge bg-html">HTML5</span>
+                            <span class="badge bg-css">CSS3</span>
+                            <span class="badge bg-js">JavaScript</span>
+                            <span class="badge bg-grid">CSS Grid</span>
+                            <span class="badge bg-flex">Flexbox</span>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <a href="https://caswellnziyane.github.io/EcoBite/" class="btn btn-primary">Live Demo</a>
                             <a href="https://github.com/221509313/ecobite" class="btn btn-outline-secondary">View Code</a>
@@ -179,6 +191,7 @@
             <!-- CodeCanvas Project -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
+                    <img src="codecanvas.jpg" class="card-img-top" alt="CodeCanvas Interface" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h3 class="card-title">CodeCanvas - Interactive Playground</h3>
                         <p class="card-text">
@@ -197,7 +210,12 @@
                             <li>Pure client-side implementation</li>
                             <li>Clean developer interface</li>
                         </ul>
-                        <p><strong>Tools & Technologies:</strong> HTML5, CSS3, JavaScript, DOM API</p>
+                        <div class="tech-badges mb-3">
+                            <span class="badge bg-html">HTML5</span>
+                            <span class="badge bg-css">CSS3</span>
+                            <span class="badge bg-js">JavaScript</span>
+                            <span class="badge bg-dom">DOM API</span>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <a href="https://221509313.github.io/CodeCanvas/" class="btn btn-primary">Live Demo</a>
                             <a href="https://github.com/221509313/CodeCanvas" class="btn btn-outline-secondary">View Code</a>
@@ -211,6 +229,59 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Technology Badge Colors */
+    .tech-badges .badge {
+        margin-right: 5px;
+        margin-bottom: 5px;
+        font-weight: 500;
+        padding: 5px 10px;
+    }
+    .bg-html {
+        background-color: #e34c26 !important;
+        color: white;
+    }
+    .bg-css {
+        background-color: #264de4 !important;
+        color: white;
+    }
+    .bg-js {
+        background-color: #f0db4f !important;
+        color: #323330;
+    }
+    .bg-api {
+        background-color: #6e5494 !important;
+        color: white;
+    }
+    .bg-grid {
+        background-color: #7a7a7a !important;
+        color: white;
+    }
+    .bg-flex {
+        background-color: #3c8dbc !important;
+        color: white;
+    }
+    .bg-dom {
+        background-color: #61dafb !important;
+        color: #20232a;
+    }
+    
+    /* Card Image Styling */
+    .card-img-top {
+        border-bottom: 1px solid rgba(0,0,0,0.125);
+        object-fit: cover;
+    }
+    
+    /* Card Hover Effect */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+</style>
 
 
     <!-- Contact Section -->
