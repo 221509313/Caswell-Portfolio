@@ -6,52 +6,90 @@
   <title>My Self Video Interviews</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0eafc);
+      margin: 0;
+      padding: 40px 20px;
     }
 
     h1 {
       text-align: center;
+      color: #333;
+      margin-bottom: 30px;
     }
 
-    #uploadContainer {
-      text-align: center;
-      margin-bottom: 20px;
+    .upload-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .upload-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="file"] {
+      display: none;
     }
 
     #videoGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      max-width: 1000px;
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     video {
       width: 100%;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    input[type="file"] {
-      margin-top: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .message {
       text-align: center;
       color: red;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      #videoGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #videoGrid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>My Self Video Interviews</h1>
 
-  <div id="uploadContainer">
-    <input type="file" accept="video/*" id="videoInput">
-    <div class="message" id="message"></div>
+  <h1>🎥 My Self Video Interviews</h1>
+
+  <div class="upload-container">
+    <label class="upload-btn">
+      Upload Video
+      <input type="file" accept="video/*" id="videoInput">
+    </label>
   </div>
+
+  <div class="message" id="message"></div>
 
   <div id="videoGrid"></div>
 
@@ -104,3 +142,4 @@
   </script>
 </body>
 </html>
+
