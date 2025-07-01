@@ -2,144 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Self Video Interviews</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Video Interview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f8f9fa, #e0eafc);
       margin: 0;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f6f8;
       color: #333;
-      margin-bottom: 30px;
     }
 
-    .upload-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .upload-btn {
-      background-color: #007bff;
+    header {
+      background-color: #0d6efd;
       color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 1.8rem;
+      font-weight: 600;
     }
 
-    .upload-btn:hover {
-      background-color: #0056b3;
-    }
-
-    input[type="file"] {
-      display: none;
-    }
-
-    #videoGrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
     }
 
     video {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-height: 500px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      background: #000;
     }
 
-    .message {
+    footer {
       text-align: center;
-      color: red;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 768px) {
-      #videoGrid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      #videoGrid {
-        grid-template-columns: 1fr;
-      }
+      padding: 20px 0;
+      font-size: 14px;
+      color: #666;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎥 My Self Video Interviews</h1>
+  <header>
+    🎤 My Self Video Interview
+  </header>
 
-  <div class="upload-container">
-    <label class="upload-btn">
-      Upload Video
-      <input type="file" accept="video/*" id="videoInput">
-    </label>
+  <div class="container">
+    <video controls>
+      <source src="images/canicee.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p style="margin-top: 20px;">This is a short video about who I am and what I do.</p>
   </div>
 
-  <div class="message" id="message"></div>
+  <footer>
+    &copy; 2025 Caswell Nziyane | Powered by Passion & Purpose
+  </footer>
 
-  <div id="videoGrid"></div>
-
-  <script>
-    const videoInput = document.getElementById('videoInput');
-    const videoGrid = document.getElementById('videoGrid');
-    const message = document.getElementById('message');
-    const maxVideos = 6;
-
-    function loadVideos() {
-      videoGrid.innerHTML = '';
-      const videoData = JSON.parse(localStorage.getItem('myVideos')) || [];
-
-      videoData.forEach((videoSrc, index) => {
-        const videoEl = document.createElement('video');
-        videoEl.controls = true;
-        videoEl.src = videoSrc;
-        videoEl.title = `Video ${index + 1}`;
-        videoGrid.appendChild(videoEl);
-      });
-
-      if (videoData.length >= maxVideos) {
-        message.textContent = 'You have reached the maximum of 6 videos.';
-      } else {
-        message.textContent = '';
-      }
-    }
-
-    videoInput.addEventListener('change', function () {
-      const file = this.files[0];
-      if (!file) return;
-
-      const videoData = JSON.parse(localStorage.getItem('myVideos')) || [];
-      if (videoData.length >= maxVideos) {
-        alert('Maximum of 6 videos allowed.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        videoData.push(e.target.result);
-        localStorage.setItem('myVideos', JSON.stringify(videoData));
-        loadVideos();
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // Load videos on page load
-    loadVideos();
-  </script>
 </body>
 </html>
-
