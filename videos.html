@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Self Video Interviews</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #uploadContainer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #videoGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    .message {
+      text-align: center;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Self Video Interviews</h1>
+
+  <div id="uploadContainer">
+    <input type="file" accept="video/*" id="videoInput">
+    <div class="message" id="message"></div>
+  </div>
+
+  <div id="videoGrid"></div>
+
+  <script>
+    const videoInput = document.getElementById('videoInput');
+    const videoGrid = document.getElementById('videoGrid');
+    const message = document.getElementById('message');
+    const maxVideos = 6;
+
+    function loadVideos() {
+      videoGrid.innerHTML = '';
+      const videoData = JSON.parse(localStorage.getItem('myVideos')) || [];
+
+      videoData.forEach((videoSrc, index) => {
+        const videoEl = document.createElement('video');
+        videoEl.controls = true;
+        videoEl.src = videoSrc;
+        videoEl.title = `Video ${index + 1}`;
+        videoGrid.appendChild(videoEl);
+      });
+
+      if (videoData.length >= maxVideos) {
+        message.textContent = 'You have reached the maximum of 6 videos.';
+      } else {
+        message.textContent = '';
+      }
+    }
+
+    videoInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const videoData = JSON.parse(localStorage.getItem('myVideos')) || [];
+      if (videoData.length >= maxVideos) {
+        alert('Maximum of 6 videos allowed.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        videoData.push(e.target.result);
+        localStorage.setItem('myVideos', JSON.stringify(videoData));
+        loadVideos();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Load videos on page load
+    loadVideos();
+  </script>
+</body>
+</html>
